@@ -202,6 +202,28 @@
       "image_type": "cloud",
       "default_user": "root",
       "min_ansible_version": "2.18"
+      "setup": [
+        {
+          "name": "Bootstrap python on Leap",
+          "hosts": "all",
+          "gather_facts": false,
+          "become": true,
+          "tasks": [
+            {
+              "name": "Update repository metadata",
+              "raw": "LANG=C zypper -n refresh",
+              "register": "zypper_refresh_output",
+              "changed_when": "'Retrieving repository' in zypper_refresh_output.stdout"
+            },
+            {
+              "name": "Install python311",
+              "raw": "LANG=C zypper -n install python311",
+              "register": "zypper_install_output",
+              "changed_when": "'Nothing to do' not in zypper_install_output.stdout"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "centos-10-bootc",
