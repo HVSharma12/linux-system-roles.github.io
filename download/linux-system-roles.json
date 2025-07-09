@@ -201,7 +201,7 @@
       "arch": "x86_64",
       "image_type": "cloud",
       "default_user": "root",
-      "min_ansible_version": "2.18"
+      "min_ansible_version": "2.18",
       "setup": [
         {
           "name": "Bootstrap python on Leap",
