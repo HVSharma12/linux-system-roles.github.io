@@ -197,6 +197,34 @@
       "container": "quay.io/centos-bootc/centos-bootc:stream10",
       "upload_results": true,
       "setup": []
+    },
+    {
+      "name": "leap-15.6",
+      "source": "https://download.opensuse.org/repositories/Cloud:/Images:/Leap_15.6/images/openSUSE-Leap-15.6.x86_64-NoCloud.qcow2",
+      "upload_results": true,
+      "min_ansible_version": "2.16",
+      "setup": [
+        {
+          "name": "Bootstrap python on Leap",
+          "hosts": "all",
+          "gather_facts": false,
+          "become": true,
+          "tasks": [
+            {
+              "name": "Update repository metadata",
+              "raw": "LANG=C zypper -n refresh",
+              "register": "zypper_refresh_output",
+              "changed_when": "'Retrieving repository' in zypper_refresh_output.stdout"
+            },
+            {
+              "name": "Install python311",
+              "raw": "LANG=C zypper -n install python311",
+              "register": "zypper_install_output",
+              "changed_when": "'Nothing to do' not in zypper_install_output.stdout"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
