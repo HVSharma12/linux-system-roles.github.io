@@ -225,6 +225,13 @@
           ]
         }
       ]
+    },
+    {
+      "name": "leap-16.0",
+      "source": "https://download.opensuse.org/repositories/Cloud:/Images:/Leap_16.0/images/Leap-16.0-Minimal-VM.x86_64-Cloud-Build6.3.qcow2",
+      "openstack_image": "openSUSE-Leap-16.0-Cloud-x86_64",
+      "upload_results": true,
+      "min_ansible_version": "2.18"
     }
   ]
 }
